@@ -30,7 +30,7 @@ Siga as etapas abaixo para configurar o ambiente de desenvolvimento:
 2. Clone este repositório para o seu ambiente local:
 
    ```shell
-   git clone https://github.com/seu-usuario/projeto-adocao-bens.git
+   git clone https://github.com/corteisjr/Desapego.git
    ```
 
 3. Acesse o diretório do projeto:
