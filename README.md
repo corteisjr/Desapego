@@ -127,6 +127,6 @@ Este projeto é distribuído
 
 Em caso de dúvidas ou sugestões, entre em contato conosco:
 
-- Nome: [Corteis]
-- Email: [corteisjunior@gmail.com]
+- Nome: Corteis
+- Email: corteisjunior@gmail.com
 - GitHub: [corteisjr](https://github.com/corteisjr)
