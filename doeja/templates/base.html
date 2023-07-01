@@ -1,0 +1,49 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    {%block styles %} {% endblock %}
+    <title>Desapego - {% block title %} {% endblock %}</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-wrapper blue darken-3">
+          <div class="container">
+            <a href="#" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="sass.html">Sass</a></li>
+              <li><a href="badges.html">Components</a></li>
+              <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    {% block content %}{% endblock %}
+    <footer
+      class="blue darken-3"
+      style="position: fixed; bottom: 0; width: 100%"
+    >
+      <div class="blue darken-4 white-text" style="padding: 10px">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              © 2023 Copyright
+              <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% block scripts %} {% endblock %}
+  </body>
+</html>
