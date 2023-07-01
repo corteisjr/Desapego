@@ -7,7 +7,7 @@ class Donation(TimestampedModel):
     description = models.CharField(max_length=255, null=True, blank=True)
     date_of_donation = models.DateField(default=None, null=True, blank=True)
     status = models.IntegerField(choices=DONATION_STATUS, default=1)
-    picture = models.ImageField()
+    picture = models.ImageField(null=True, blank=True)
     category = models.IntegerField(choices=CATEGORY_CHOICES, default=1)
     
     def __str__(self):

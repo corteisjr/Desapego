@@ -5,6 +5,7 @@ class Profile(TimestampedModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.IntegerField(choices=ROLE_CHOICE, default=3)
     birthday = models.DateField(default=None, null=True, blank=True)
+    picture = models.ImageField(null=True, blank=True)
     token = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self):
