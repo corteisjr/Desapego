@@ -56,14 +56,14 @@
                 <div class="row">
                   
                   {% if message is not None %}
-                  <div class="alert alert-{{ message.type }}">{{ message.text }}</div>
+                  <div class="alert card red darken-4 white-text text-darken-3">{{ message.text }}</div>
                   {% endif %}
                   {% csrf_token %}
                   
                   {% for f in form %}
                   <div class="row">
-                    <div class="input-field row m12">
-                      {{f.label}}
+                    <div class="input-field left-align">
+                      {{f.label|safe}}
                       {{f}}
                       
                       {% for error in f.errors %}
