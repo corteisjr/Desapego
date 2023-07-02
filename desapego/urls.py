@@ -7,8 +7,8 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('doeja.urls.AuthUrls')),
     path('', include('doeja.urls.HomeUrls')),
     path('profile/', include('doeja.urls.ProfileUrls')),
-    path('auth/', include('doeja.urls.AuthUrls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
