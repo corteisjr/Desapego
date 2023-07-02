@@ -1,6 +1,6 @@
 from email import message
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from doeja.forms.AuthForm import LoginForm
 
 
@@ -41,3 +41,7 @@ def login_view(request):
         context=context,
         status=200
     )
+    
+def logout_viw(request):
+    logout(request)
+    return redirect('/login')

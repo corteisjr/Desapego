@@ -61,7 +61,8 @@
                   {% csrf_token %}
                   
                   {% for f in form %}
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="input-field row m12">
                       {{f.label}}
                       {{f}}
                       
@@ -70,6 +71,7 @@
                       {% endfor %}
                       
                     </div>
+                  </div>
                     {% endfor %}
                     <div class="row">
                       <label style="float: right">
