@@ -7,7 +7,7 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('doeja.urls.AuthUrls')),
+    path('login/', include('doeja.urls.AuthUrls')),
     path('', include('doeja.urls.HomeUrls')),
     path('profile/', include('doeja.urls.ProfileUrls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
