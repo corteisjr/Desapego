@@ -41,6 +41,9 @@ def login_view(request):
         status=200
     )
     
-def logout_viw(request):
+def register_view(request):
+    ...
+    
+def logout_view(request):
     logout(request)
     return redirect('/login')

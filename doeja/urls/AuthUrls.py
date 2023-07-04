@@ -4,5 +4,5 @@ from doeja.views.AuthView import *
 
 urlpatterns = [
     path('', login_view, name='login'),
-    path('logout', logout_viw, name='logout')
+    path('logout', logout_view, name='logout')
 ]
