@@ -15,6 +15,6 @@ class LoginForm(forms.Form):
     )
     
 class RegisterForm(forms.Form):
-    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'input-field'}))
-    email  = forms.CharField(required=True, widget=forms.EmailField(attrs={'class': 'input-field'}))
-    password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class': 'input-field'}))
+    username = forms.CharField(required=True)
+    email  = forms.CharField(required=True)
+    password = forms.CharField(max_length=32)

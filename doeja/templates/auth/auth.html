@@ -56,7 +56,7 @@
                 <div class="row">
                   
                   {% if message is not None %}
-                  <div class="alert card red darken-4 white-text text-darken-3">{{ message.text }}</div>
+                  <div class="alert card {{message.color}} darken-4 white-text text-darken-3">{{ message.text }}</div>
                   {% endif %}
                   {% csrf_token %}
                   
@@ -89,7 +89,7 @@
                           name="btn_login"
                           class="col s12 btn btn-large waves-effect blue darken-3"
                         >
-                          Login
+                          {{button_text}}
                         </button>
                       </div>
                     </center>

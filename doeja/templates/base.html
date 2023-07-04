@@ -35,7 +35,7 @@
                   <li><a href="">Perfil</a></li>
                   <li><a href="{% url 'logout' %}">Sair</a></li>
                   {% else %}
-                  <li><a href="">Registrar-se</a></li>
+                  <li><a href="{% url 'register' %}">Registrar-se</a></li>
                   {% endif %} {% comment %}
                   <li><a href="">Mensagens</a></li>
                   <li><a href="">Notificações</a></li>

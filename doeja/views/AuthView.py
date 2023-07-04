@@ -25,7 +25,7 @@ def login_view(request):
                 return redirect('/')
             else:
                 message = {
-                    'type' : 'danger',
+                    'color' : 'red',
                     'text' : 'Dados de usuário incorrectos'
                 }
                 
@@ -68,16 +68,17 @@ def register_view(request):
             
             elif verify_email is not None:
                 message = {
-                    'type': 'danger',
+                    'color': 'red',
                     'text' : 'Já existe um usuário com este e-mail!!'
                 }
             else:
                 user = User.objects.create_user(username, email, password)
                 if user is  not None:
                     message = {
-                        'type': 'success',
+                        'color': 'teal',
                         'text': 'Conta criada com sucesso!'
                     }
+                    redirect('login/')
                 else:
                     message = {
                         'type': 'danger',
