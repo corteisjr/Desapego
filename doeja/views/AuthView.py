@@ -53,6 +53,7 @@ def register_view(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
+        role = request.POST['role']
         registerForm = RegisterForm(request.POST)
         
         if registerForm.is_valid():
@@ -73,6 +74,9 @@ def register_view(request):
                 }
             else:
                 user = User.objects.create_user(username, email, password)
+                profile = user.profile
+                profile.role = role
+                profile.save()
                 if user is  not None:
                     message = {
                         'color': 'teal',
@@ -96,4 +100,4 @@ def register_view(request):
         
 def logout_view(request):
     logout(request)
-    return redirect('/login')
+    return redirect('/auth/login')

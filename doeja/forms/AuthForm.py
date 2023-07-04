@@ -18,3 +18,12 @@ class RegisterForm(forms.Form):
     username = forms.CharField(required=True)
     email  = forms.CharField(required=True)
     password = forms.CharField(max_length=32)
+    role = forms.ChoiceField(
+        choices=(
+            (2, 'Doador'),
+            (3, 'Receptor'),
+        ),
+        widget=forms.RadioSelect(attrs={'class': 'form-check-input'}),
+        required=True,
+        label='Escolha o seu papel',
+    )

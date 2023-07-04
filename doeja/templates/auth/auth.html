@@ -46,57 +46,56 @@
           Por favor, faça o login com a sua conta!
         </h5>
         <div class="container">
-          <div class="z-depth-1 grey lighten-4 row" style="
+          <div class="grey lighten-4 row" style="
                 display: inline-block;
                 padding: 32px 48px 0px 48px;
-                border: 1px solid #eee;
+                border: 1px solid #ddd;
+                width: 60%;
               "
             >
-              <form class="col s12" method="post">
-                <div class="row">
-                  
+            <form  class="col s12" method="post">
+              <div class="row">
                   {% if message is not None %}
-                  <div class="alert card {{message.color}} darken-4 white-text text-darken-3">{{ message.text }}</div>
+                  <div class="alert card {{ message.color }} darken-4 white-text text-darken-3">{{ message.text }}</div>
                   {% endif %}
                   {% csrf_token %}
-                  
                   {% for f in form %}
-                  <div class="row">
-                    <div class="input-field left-align">
-                      {{f.label|safe}}
-                      {{f}}
-                      
-                      {% for error in f.errors %}
-                      <div class="invalid-feadback" style="display: initial;">{{ error }}</div>
-                      {% endfor %}
-                      
-                    </div>
-                  </div>
-                    {% endfor %}
-                    <div class="row">
-                      <label style="float: right">
-                        <a class="red-text darken-3" href="#!"
-                          ><b>Forgot Password?</b></a
-                        >
-                      </label>
-                    </div>
-                    
-                    <br />
-                    <center>
-                      <div class="row">
-                        <button
-                          type="submit"
-                          name="btn_login"
-                          class="col s12 btn btn-large waves-effect blue darken-3"
-                        >
-                          {{button_text}}
-                        </button>
+                  {% if f.name == 'role' %}
+                      <div class="row left-align">
+                        <p>
+                          <label>{{ f.label }}</label>
+                        </p>
+                        <div class="left-align">
+                          {{ f }} 
+                        </div>
                       </div>
-                    </center>
+                  {% else %}
+                      <div class="row">
+                          <div class="input-field">
+                              <label>{{ f.label }}</label>
+                              {{ f }}
+                              {% for error in f.errors %}
+                                  <div class="invalid-feedback" style="display: initial;">{{ error }}</div>
+                              {% endfor %}
+                          </div>
+                      </div>
+                  {% endif %}
+              {% endfor %}
+              <div class="row">
+                      <label style="float: right">
+                          <a class="red-text darken-3" href="#!"><b>Forgot Password?</b></a>
+                      </label>
                   </div>
-                </div>
-
-              </form>
+                  <br>
+                  <center>
+                      <div class="row">
+                          <button type="submit" name="btn_login" class="col s12 btn btn-large waves-effect blue darken-3">
+                              {{ button_text }}
+                          </button>
+                      </div>
+                  </center>
+              </div>
+          </form>          
             </div>
           </div>
       </center>
