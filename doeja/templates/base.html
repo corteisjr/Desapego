@@ -30,7 +30,7 @@
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                   {% if user.is_authenticated %}
-                  <li><a href="">Doações</a></li>
+                  <li><a href="{% url 'donation' %}">Doações</a></li>
                   <li><a href="">Minhas Doações</a></li>
                   <li><a href="">Receber Doações</a></li>
                   <li><a href="">Perfil</a></li>

@@ -10,6 +10,6 @@ urlpatterns = [
     path('auth/', include('doeja.urls.AuthUrls')),
     path('', include('doeja.urls.HomeUrls')),
     path('profile/', include('doeja.urls.ProfileUrls')),
-    path('donation', include('doeja.urls.DonationUrls'))
+    path('donation/', include('doeja.urls.DonationUrls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

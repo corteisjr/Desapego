@@ -3,5 +3,5 @@ from doeja.views.DonationView import *
 
 
 urlpatterns = [
-    path('', list_donation_view)
+    path('list', list_donation_view, name='donation')
 ]
