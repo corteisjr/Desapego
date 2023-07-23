@@ -9,7 +9,7 @@ class Donation(TimestampedModel):
     status = models.IntegerField(choices=DONATION_STATUS, default=1)
     picture = models.ImageField(null=True, blank=True)
     category = models.IntegerField(choices=CATEGORY_CHOICES, default=1)
-    likes = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
     
     def __str__(self):
         return f'{self.name_of_object} - {self.category}'

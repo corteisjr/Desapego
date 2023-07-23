@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
-from doeja.models import Donation, Profile
+from doeja.models import Donation, Profile, Like
 
 def list_donation_view(request):
     name_of_object = request.GET.get("name_of_object")
@@ -45,3 +45,9 @@ def own_donation(request):
         request, template_name='home/home.html', context=context
     )
     
+# view to like donation
+def like_donation(request, donation_id):
+    donation = get_object_or_404(Donation, pk=donation_id)
+    
+    if request.user in donation.likes.all():
+            ...

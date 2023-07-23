@@ -38,4 +38,4 @@ CATEGORY_CHOICES = (
 # Models
 from .Timestamp import TimestampedModel
 from .Profile import Profile
-from .Donations import Donation
+from .Donations import Donation, Like
