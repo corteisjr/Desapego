@@ -9,6 +9,11 @@ class Donation(TimestampedModel):
     status = models.IntegerField(choices=DONATION_STATUS, default=1)
     picture = models.ImageField(null=True, blank=True)
     category = models.IntegerField(choices=CATEGORY_CHOICES, default=1)
+    likes = models.IntegerField(default=0)
     
     def __str__(self):
         return f'{self.name_of_object} - {self.category}'
+    
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    donation = models.ForeignKey(Donation, on_delete=models.CASCADE)
