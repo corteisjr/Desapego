@@ -30,5 +30,5 @@ def list_donation_view(request):
     }
     
     return render(
-        request, template_name='donation/index.html', context=context
+        request, template_name='home/home.html', context=context
     )
