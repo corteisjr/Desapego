@@ -26,10 +26,10 @@
           {% if donation.picture %}
             <div class="card-image">
               <img src="{{ donation.picture.url }}" alt="{{ donation.name_of_object }}">
-              <span class="card-title">{{ donation.name_of_object }}</span>
             </div>
-          {% endif %}
-          <div class="card-content">
+            {% endif %}
+            <div class="card-action">
+            <span class="text-black h3" style="font-weight: bold; font-size: 28px;">{{ donation.name_of_object }}</span>
             <p>{{ donation.description }}</p>
           </div>
           <div class="card-action">
