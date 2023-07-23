@@ -50,4 +50,11 @@ def like_donation(request, donation_id):
     donation = get_object_or_404(Donation, pk=donation_id)
     
     if request.user in donation.likes.all():
-            ...
+        donation.likes.remove(request.user)
+    else:
+        donation.likes.add(request.user)
+        
+        
+    return redirect(
+        'home'
+    )
