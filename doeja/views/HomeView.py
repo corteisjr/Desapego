@@ -32,3 +32,16 @@ def list_donation_view(request):
     return render(
         request, template_name='home/home.html', context=context
     )
+    
+
+def own_donation(request):
+    user = request.user
+    donations = Donation.objects.filter(user=user).order_by('-created_at')
+    context = {
+        'donations' : donations
+    }
+    
+    return render(
+        request, template_name='home/home.html', context=context
+    )
+    
