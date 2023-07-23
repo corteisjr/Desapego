@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirec
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
 from doeja.models import Donation
 
 def list_donation_view(request):
@@ -9,7 +9,7 @@ def list_donation_view(request):
     picture = request.GET.get('picture')
     category = request.GET.get('category')
     
-    donations = Donation.objects.all().order_by('-created-at')
+    donations = Donation.objects.all().order_by('-created_at')
     
     if name_of_object is not None:
         donations = donations.filter(name_of_object__icontains=name_of_object)
