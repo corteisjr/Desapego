@@ -19,20 +19,21 @@
   </head>
   <body>
     <header>
-      <nav class="navbar extend-navbar">
+      <nav class="navbar navbar-fixed">
         <div class="nav-wrapper blue darken-3">
           <div class="container">
             <div class="row">
               <div class="col s12">
-                <a href="#" class="brand-logo">
+                <a href="{% url 'home' %}" class="brand-logo">
                   Desa<i class="material-icons">flight_takeoff</i>pego
                 </a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                   {% if user.is_authenticated %}
-                  <li><a href="{% url 'donation' %}">Doações</a></li>
-                  <li><a href="">Minhas Doações</a></li>
-                  <li><a href="">Receber Doações</a></li>
+                    {% if user.profile.role == 2 %}
+                      <li><a href="">Minhas Doações</a></li>
+                    {% endif %}
+                  <!-- <li><a href="">Receber Doações</a></li> -->
                   <li><a href="">Perfil</a></li>
                   <li><a href="{% url 'logout' %}">Sair</a></li>
                   {% else %}
@@ -49,7 +50,8 @@
         </div>
       </nav>
     </header>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
     <footer
       class="blue darken-3"
       style="position: fixed; bottom: 0; width: 100%"

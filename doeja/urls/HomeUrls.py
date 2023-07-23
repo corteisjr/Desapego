@@ -1,6 +1,6 @@
 from django.urls import path
-from doeja.views.HomeView import home_view
+from doeja.views.HomeView import list_donation_view
 
 urlpatterns = [
-    path("", home_view)
+    path("", list_donation_view, name='home')
 ]
