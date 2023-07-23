@@ -40,9 +40,9 @@
             <div class="card-action">
               <a href="{% url 'like_donation' donation_id=donation.id %}">
                 {% if user in donation.likes.all %}
-                  Unlike
+                  <spa class="red-text darken-4">Unlike</spa>
                 {% else %}
-                  Like
+                  <spa class="blue-text darken-4">Like</spa>
                 {% endif %}
               </a>
               <span class="right">{{ donation.likes.count }} Likes</span>
