@@ -31,7 +31,7 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                   {% if user.is_authenticated %}
                     {% if user.profile.role == 2 %}
-                      <li><a href="">Minhas Doações</a></li>
+                      <li><a href="{% url 'own_donation' %}">Minhas Doações</a></li>
                     {% endif %}
                   <!-- <li><a href="">Receber Doações</a></li> -->
                   <li><a href="">Perfil</a></li>

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
-from doeja.models import Donation
+from doeja.models import Donation, Profile
 
 def list_donation_view(request):
     name_of_object = request.GET.get("name_of_object")
@@ -35,7 +35,7 @@ def list_donation_view(request):
     
 
 def own_donation(request):
-    user = request.user
+    user = Profile.objects.get(user=request.user)
     donations = Donation.objects.filter(user=user).order_by('-created_at')
     context = {
         'donations' : donations
