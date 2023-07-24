@@ -25,5 +25,5 @@ class RegisterForm(forms.Form):
         ),
         widget=forms.RadioSelect(attrs={'class': 'form-check-input'}),
         required=True,
-        label='Escolha o seu papel',
+        label='',
     )

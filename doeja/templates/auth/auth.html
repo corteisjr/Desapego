@@ -1,115 +1,112 @@
-{% extends 'base.html' %} {% load static %} {% block title%}Login {% endblock%}
-{% block styles %} {% endblock styles %} 
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registro{% endblock %}
+
+{% block styles %}
+<style>
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  body {
+    background: #fafafa;
+  }
+
+  .input-field input[type="date"]:focus+label,
+  .input-field input[type="text"]:focus+label,
+  .input-field input[type="email"]:focus+label,
+  .input-field input[type="password"]:focus+label {
+    color: #b71c1c;
+  }
+
+  .input-field input[type="date"]:focus,
+  .input-field input[type="text"]:focus,
+  .input-field input[type="email"]:focus,
+  .input-field input[type="password"]:focus {
+    border-bottom: 2px solid #b71c1c;
+    box-shadow: none;
+  }
+
+  .checkbox-field label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .checkbox-field input[type="checkbox"] {
+    position: relative;
+    opacity: 0;
+  }
+
+  .register-btn {
+    margin-top: 20px;
+  }
+</style>
+{% endblock styles %}
 
 {% block content %}
 <div class="container">
-  <html>
-
-  <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
-    <style>
-      body {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-      }
-
-      main {
-        flex: 1 0 auto;
-      }
-
-      body {
-        background: #fafafa;
-      }
-
-      .input-field input[type="date"]:focus+label,
-      .input-field input[type="text"]:focus+label,
-      .input-field input[type="email"]:focus+label,
-      .input-field input[type="password"]:focus+label {
-        color: #b71c1c;
-      }
-
-      .input-field input[type="date"]:focus,
-      .input-field input[type="text"]:focus,
-      .input-field input[type="email"]:focus,
-      .input-field input[type="password"]:focus {
-        border-bottom: 2px solid #b71c1c;
-        box-shadow: none;
-      }
-    </style>
-  </head>
-
-  <body>
-    <main>
-      <center>
-        <h5 class="blue-text darken-4">
-          Por favor, faça o login com a sua conta!
-        </h5>
-        <div class="container">
-          <div class="grey lighten-4 row" style="
-                display: inline-block;
-                padding: 32px 48px 0px 48px;
-                border: 1px solid #ddd;
-                width: 60%;
-              "
-            >
-            <form  class="col s12" method="post">
-              <div class="row">
-                  {% if message is not None %}
-                  <div class="alert card {{ message.color }} darken-4 white-text text-darken-3">{{ message.text }}</div>
-                  {% endif %}
-                  {% csrf_token %}
-                  {% for f in form %}
+  <main>
+    <center>
+      <h5 class="blue-text darken-4">Por favor, faça o registro de uma nova conta!</h5>
+      <div class="container">
+        <div class="grey lighten-4 row"
+          style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #ddd; width: 60%;">
+          <form class="col s12" method="post">
+            <div class="row">
+              {% if message is not None %}
+              <div class="alert card {{ message.color }} darken-4 white-text text-darken-3">{{ message.text }}</div>
+              {% endif %}
+              {% csrf_token %}
+              {% for f in form %}
+                <div class="input-field">
+                  <label>{{ f.label }}</label>
                   {% if f.name == 'role' %}
-                      <div class="row left-align">
-                        <p>
-                          <label>{{ f.label }}</label>
-                        </p>
-                        <div class="left-align">
-                          {{ f }} 
-                        </div>
-                      </div>
+                    <div class="checkbox-field">
+                      {% for choice in f %}
+                      <label>
+                          {{ choice.tag }}
+                          <span>{{ choice.choice_label }}</span>
+                        </label>
+                      {% endfor %}
+                    </div>
                   {% else %}
-                      <div class="row">
-                          <div class="input-field">
-                              <label>{{ f.label }}</label>
-                              {{ f }}
-                              {% for error in f.errors %}
-                                  <div class="invalid-feedback" style="display: initial;">{{ error }}</div>
-                              {% endfor %}
-                          </div>
-                      </div>
+                    {{ f }}
                   {% endif %}
+                  {% for error in f.errors %}
+                    <div class="invalid-feedback" style="display: initial;">{{ error }}</div>
+                  {% endfor %}
+                </div>
               {% endfor %}
               <div class="row">
-                      <label style="float: right">
-                          <a class="red-text darken-3" href="#!"><b>Forgot Password?</b></a>
-                      </label>
-                  </div>
-                  <br>
-                  <center>
-                      <div class="row">
-                          <button type="submit" name="btn_login" class="col s12 btn btn-large waves-effect blue darken-3">
-                              {{ button_text }}
-                          </button>
-                      </div>
-                  </center>
+                <label style="float: right">
+                  <a class="red-text darken-3" href="#!"><b>Forgot Password?</b></a>
+                </label>
               </div>
-          </form>          
+              <center>
+                <div class="row register-btn">
+                  <button type="submit" name="btn_register" class="col s12 btn btn-large waves-effect blue darken-3">
+                    {{ button_text }}
+                  </button>
+                </div>
+              </center>
             </div>
-          </div>
-      </center>
-    </main>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  </body>
-
-  </html>
+          </form>
+        </div>
+      </div>
+    </center>
+  </main>
 </div>
-{% endblock content %} {% block scripts %}
-<script src="{% static 'js/home.j'%}"></script>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock scripts %}
