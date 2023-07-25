@@ -50,7 +50,15 @@ def create_donation(request):
     if request.method == 'POST':
         form = DonationForm(request.POST, request.FILES)
         if form.is_valid():
-            ...
+            donation = form.save(commit=False)
+            donation.save()
+            return redirect('own_donation')
+        else:
+            return redirect('own_donation')
+    else:
+        form = DonationForm()
+        context = {'form': form}
+        return render(request, template_name='home/home.html', context=context)
     
 # view to like donation
 def like_donation(request, donation_id):
