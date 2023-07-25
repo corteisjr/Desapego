@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
+from doeja.forms.DonationForm import DonationForm
 from doeja.models import Donation, Profile, Like
 
 def list_donation_view(request):
@@ -44,6 +45,12 @@ def own_donation(request):
     return render(
         request, template_name='home/home.html', context=context
     )
+    
+def create_donation(request):
+    if request.method == 'POST':
+        form = DonationForm(request.POST, request.FILES)
+        if form.is_valid():
+            ...
     
 # view to like donation
 def like_donation(request, donation_id):
