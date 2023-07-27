@@ -43,7 +43,7 @@ def own_donation(request):
     }
     
     return render(
-        request, template_name='home/home.html', context=context
+        request, template_name='home/own_donation.html', context=context
     )
     
 def create_donation(request):
@@ -58,7 +58,7 @@ def create_donation(request):
     else:
         form = DonationForm()
         context = {'form': form}
-        return render(request, template_name='home/home.html', context=context)
+        return render(request, template_name='home/own_donation.html', context=context)
     
 # view to like donation
 def like_donation(request, donation_id):

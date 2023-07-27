@@ -1,5 +1,5 @@
 from django import forms
-from models.Donations import Donation
+from doeja.models import Donation
 
 class DonationForm(forms.ModelForm):
     class Meta:

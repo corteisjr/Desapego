@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% load static %} {% block title%}Doações {% endblock%}
+{% block styles %}
+
+<style>
+    .card-content {
+      height: 100px;
+      overflow: hidden;
+    }
+    
+    .card-image {
+        object-fit: cover;
+        height: 200px;
+        width: 100%;
+    }
+</style>
+
+{% endblock styles %} 
+{% block content %}
+
+
+<div>
+  <div class="container">
+    <div class="row">
+      {% for donation in donations %}
+        <div class="col s12 m4">
+          <div class="card">
+            {% if donation.picture %}
+              <div class="card-image">
+                <img src="{{ donation.picture.url }}" alt="{{ donation.name_of_object }}">
+              </div>
+              {% endif %}
+              <div class="card-action">
+              <span class="text-black h3" style="font-weight: bold; font-size: 28px;">{{ donation.name_of_object }}</span>
+              <p>{{ donation.description }}</p>
+            </div>
+            <div class="card-action">
+              <span>Categoria: {{ donation.get_category_display }}</span>
+              <span class="right">{{ donation.date_of_donation }}</span>
+            </div>
+            {% if user.is_authenticated %}
+              <div class="card-action">
+                <a href="{% url 'like_donation' donation_id=donation.id %}">
+                <span class="right">{{ donation.likes.count }} Likes</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 and not forloop.last %}
+          </div><div class="row">
+        {% endif %}
+      {% empty %}
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Você ainda não fez nenhuma doação!</span>
+              <p>Faça a diferença hoje! Doe e ajude a transformar vidas!</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+</div>
+{% endblock content %}
