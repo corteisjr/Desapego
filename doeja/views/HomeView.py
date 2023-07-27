@@ -36,29 +36,26 @@ def list_donation_view(request):
     
 
 def own_donation(request):
-    user = Profile.objects.get(user=request.user)
-    donations = Donation.objects.filter(user=user).order_by('-created_at')
-    context = {
-        'donations' : donations
-    }
-    
-    return render(
-        request, template_name='home/own_donation.html', context=context
-    )
-    
-def create_donation(request):
     if request.method == 'POST':
         form = DonationForm(request.POST, request.FILES)
         if form.is_valid():
             donation = form.save(commit=False)
+            donation.user = request.user.profile
             donation.save()
-            return redirect('own_donation')
-        else:
             return redirect('own_donation')
     else:
         form = DonationForm()
-        context = {'form': form}
-        return render(request, template_name='home/own_donation.html', context=context)
+
+    user = Profile.objects.get(user=request.user)
+    donations = Donation.objects.filter(user=user).order_by('-created_at')
+
+    context = {
+        'donations': donations,
+        'form': form,
+    }
+    
+    return render(request, template_name='home/own_donation.html', context=context)
+
     
 # view to like donation
 def like_donation(request, donation_id):

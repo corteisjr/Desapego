@@ -20,6 +20,55 @@
 
 <div>
   <div class="container">
+      {% if user.is_authenticated %}
+      <div class="col">
+          <!-- <div class="container"> -->
+          <h5 class="blue-text darken-4">Adicionar Doação</h5>
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="input-field col s12">
+                  {{ form.name_of_object }}
+                  <label for="id_name_of_object">Nome do Objeto</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  {{ form.description }}
+                  <label for="id_description">Descrição</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="file-field input-field col s12">
+                  <div class="btn blue darken-3">
+                    <span>Imagem</span>
+                    {{ form.picture }}
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                    <select name="category" multiple>
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for value, label in form.fields.category.choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="id_category">Categoria</label>
+                </div>
+            </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button type="submit" class="btn waves-effect waves-light blue darken-3">Adicionar</button>
+                </div>
+              <!-- </div> -->
+            </form>
+          </div>
+        </div>
+    {% endif %}    
     <div class="row">
       {% for donation in donations %}
         <div class="col s12 m4">

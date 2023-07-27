@@ -5,5 +5,12 @@ class DonationForm(forms.ModelForm):
     class Meta:
         model = Donation
         fields = (
-            '__all__'
+            'name_of_object',
+            'description',
+            # 'status',
+            'picture',
+            'category',
         )
+        widgets = {
+            'category': forms.SelectMultiple(attrs={'class': 'materialize-select'}),
+        }
