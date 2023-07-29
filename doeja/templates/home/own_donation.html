@@ -22,7 +22,7 @@
   <div class="container">
       {% if user.is_authenticated %}
       <div class="col">
-          <!-- <div class="container"> -->
+          <div class="container">
           <h5 class="blue-text darken-4">Adicionar Doação</h5>
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
@@ -64,50 +64,51 @@
                 <div class="input-field col s12">
                   <button type="submit" class="btn waves-effect waves-light blue darken-3">Adicionar</button>
                 </div>
-              <!-- </div> -->
+              </div>
             </form>
           </div>
         </div>
     {% endif %}    
-    <div class="row">
-      {% for donation in donations %}
-        <div class="col s12 m4">
-          <div class="card">
-            {% if donation.picture %}
-              <div class="card-image">
-                <img src="{{ donation.picture.url }}" alt="{{ donation.name_of_object }}">
+    <div class="container">
+      <div class="row">
+          {% for donation in donations %}
+          <div class="col s12 m6">
+              <div class="card">
+                  {% if donation.picture %}
+                  <div class="card-image">
+                      <img src="{{ donation.picture.url }}" alt="{{ donation.name_of_object }}">
+                  </div>
+                  {% endif %}
+                  <div class="card-action">
+                      <span class="text-black h3" style="font-weight: bold; font-size: 28px;">{{ donation.name_of_object }}</span>
+                      <p>{{ donation.description }}</p>
+                  </div>
+                  <div class="card-action">
+                      <span>Categoria: {{ donation.get_category_display }}</span>
+                      <span class="right">{{ donation.date_of_donation }}</span>
+                  </div>
+                  {% if user.is_authenticated %}
+                  <div class="card-action">
+                      <a href="{% url 'like_donation' donation_id=donation.id %}">
+                          <span class="right">{{ donation.likes.count }} Likes</span>
+                      </a>
+                  </div>
+                  {% endif %}
               </div>
-              {% endif %}
-              <div class="card-action">
-              <span class="text-black h3" style="font-weight: bold; font-size: 28px;">{{ donation.name_of_object }}</span>
-              <p>{{ donation.description }}</p>
-            </div>
-            <div class="card-action">
-              <span>Categoria: {{ donation.get_category_display }}</span>
-              <span class="right">{{ donation.date_of_donation }}</span>
-            </div>
-            {% if user.is_authenticated %}
-              <div class="card-action">
-                <a href="{% url 'like_donation' donation_id=donation.id %}">
-                <span class="right">{{ donation.likes.count }} Likes</span>
+          </div>
+          {% if forloop.counter|divisibleby:3 and not forloop.last %}
+          {% endif %}
+          {% empty %}
+          <div class="col s12">
+              <div class="card">
+                  <div class="card-content">
+                      <span class="card-title">Você ainda não fez nenhuma doação!</span>
+                      <p>Faça a diferença hoje! Doe e ajude a transformar vidas!</p>
+                  </div>
               </div>
-            {% endif %}
           </div>
-        </div>
-        {% if forloop.counter|divisibleby:3 and not forloop.last %}
-          </div><div class="row">
-        {% endif %}
-      {% empty %}
-        <div class="col s12">
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title">Você ainda não fez nenhuma doação!</span>
-              <p>Faça a diferença hoje! Doe e ajude a transformar vidas!</p>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-    </div>
+          {% endfor %}
+      </div>
+  </div>
 </div>
 {% endblock content %}
