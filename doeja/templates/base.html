@@ -38,6 +38,7 @@
                   <li><a href="{% url 'logout' %}">Sair</a></li>
                   {% else %}
                   <li><a href="{% url 'register' %}">Registrar-se</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
                   {% endif %} {% comment %}
                   <li><a href="">Mensagens</a></li>
                   <li><a href="">Notificações</a></li>
@@ -54,7 +55,7 @@
     {% endblock %}
     <footer
       class="blue darken-3"
-      style="position: relative; width: 100%"
+      style="position: absolute; width: 100%"
     >
       <div class="blue darken-4 white-text" style="padding: 10px">
         <div class="container">

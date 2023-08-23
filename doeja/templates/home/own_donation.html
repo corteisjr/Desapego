@@ -51,12 +51,12 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                    <select name="category" multiple>
-                        <option value="" disabled selected>Choose your option</option>
-                        {% for value, label in form.fields.category.choices %}
-                            <option value="{{ value }}">{{ label }}</option>
-                        {% endfor %}
-                    </select>
+                  <select name="{{ form.category.name }}">
+                    <option value="" disabled selected>Escolha uma categoria</option>
+                    {% for value, label in form.category.field.choices %}
+                        <option value="{{ value }}" {% if value == form.category.value %} selected {% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
                     <label for="id_category">Categoria</label>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                   </div>
                   <div class="card-action">
                       <span>Categoria: {{ donation.get_category_display }}</span>
-                      <span class="right">{{ donation.date_of_donation }}</span>
+                      <span class="right">{{ donation.created_at|date:"d/m/Y" }}</span>
                   </div>
                   {% if user.is_authenticated %}
                   <div class="card-action">
@@ -111,4 +111,10 @@
       </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var selectElems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(selectElems);
+  });
+</script>
 {% endblock content %}

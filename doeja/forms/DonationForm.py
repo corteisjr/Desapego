@@ -11,6 +11,3 @@ class DonationForm(forms.ModelForm):
             'picture',
             'category',
         )
-        widgets = {
-            'category': forms.SelectMultiple(attrs={'class': 'materialize-select'}),
-        }

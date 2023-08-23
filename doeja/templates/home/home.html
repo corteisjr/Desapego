@@ -35,7 +35,7 @@
             </div>
             <div class="card-action">
               <span>Categoria: {{ donation.get_category_display }}</span>
-              <span class="right">{{ donation.date_of_donation }}</span>
+              <span class="right">{{ donation.created_at|date:"d/m/Y" }}</span>
             </div>
             {% if user.is_authenticated %}
               <div class="card-action">
