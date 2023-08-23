@@ -34,6 +34,8 @@
               <p>{{ donation.description }}</p>
             </div>
             <div class="card-action">
+              <span>Status: {{ donation.get_status_display }}</span>
+              <br/>
               <span>Categoria: {{ donation.get_category_display }}</span>
               <span class="right">{{ donation.created_at|date:"d/m/Y" }}</span>
             </div>

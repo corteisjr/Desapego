@@ -7,7 +7,7 @@ class DonationForm(forms.ModelForm):
         fields = (
             'name_of_object',
             'description',
-            # 'status',
+            'status',
             'picture',
             'category',
         )
