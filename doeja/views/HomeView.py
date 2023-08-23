@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from doeja.forms.DonationForm import DonationForm
 from doeja.models import Donation, Profile, Like
 
@@ -25,6 +26,8 @@ def list_donation_view(request):
     if category is not None:
         donations = donations.filter(category__id=category)
         
+
+        
         
     context={
         'donations' : donations
@@ -35,6 +38,20 @@ def list_donation_view(request):
     )
     
 
+def see_and_contact(request, id):
+    donations = Donation.objects.filter(id=id)
+    context = {
+        'donations': donations
+    }
+    return render(
+        request,
+        template_name='home/contact.html',
+        context=context
+            
+    )
+    
+    
+@login_required
 def own_donation(request):
     if request.method == 'POST':
         form = DonationForm(request.POST, request.FILES)

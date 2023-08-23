@@ -53,21 +53,14 @@
     </header>
     {% block content %}
     {% endblock %}
-    <footer
-      class="blue darken-3"
-      style="position: absolute; width: 100%"
-    >
-      <div class="blue darken-4 white-text" style="padding: 10px">
-        <div class="container">
-          <div class="row">
-            <div class="col s12">
-              © 2023 Copyright
-              <a class="grey-text text-lighten-4 right" href="#!">Desenvolvido com ❤️ Por CorteisJr. </a>
-            </div>
+    <footer class="page-footer blue darken-3 position-fixed bottom-0 w-100">
+      <div class="container">
+          <div class="white-text" style="padding: 10px">
+                      © 2023 Copyright
+            <a class="grey-text text-lighten-4 right" href="#!">Desenvolvido com ❤️ Por CorteisJr. </a>
           </div>
-        </div>
       </div>
-    </footer>
+  </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     {% block scripts %} {% endblock %}
   </body>

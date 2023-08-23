@@ -50,6 +50,9 @@
                 </a>
                 <span class="right">{{ donation.likes.count }} Likes</span>
               </div>
+              <div class="card-action">
+                <a href="{% url 'see_and_contact'  id=donation.id%}">Ver e Contactar</a>
+              </div>
             {% endif %}
           </div>
         </div>
