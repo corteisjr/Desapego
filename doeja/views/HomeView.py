@@ -82,27 +82,20 @@ def delete_donation(request, id):
 @login_required
 def edit_donation(request, id):
     donation = get_object_or_404(Donation, pk=id)
-    
+
     if request.method == "POST":
-        form = DonationForm(request.POST, request.FILES)
+        form = DonationForm(request.POST, request.FILES, instance=donation)
         if form.is_valid():
-            donation = form.save(commit=False)
-            donation.user = request.user.profile
-            donation.save()
+            updated_donation = form.save(commit=False)
+            updated_donation.user = request.user.profile
+            updated_donation.save()
             return redirect('own_donation')
-        else:
-            context = {'form': form, 'donation': donation}
-            return render(
-                request, 
-                template_name='home/edit-donation.html',
-                context=context
-            )
     else:
         form = DonationForm(instance=donation)
-    
+
     context = {'form': form, 'donation': donation}
     return render(
-        request, 
+        request,
         template_name='home/edit-donation.html',
         context=context
     )
