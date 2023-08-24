@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         {% for donation in donations %}
-        <div class="col s12 m7">
+        <div class="col m6">
             <div class="card">
                 {% if donation.picture %}
                 <div class="card-image">
@@ -33,16 +33,33 @@
                 {% endif %}
             </div>
         </div>
-        {% if forloop.counter|divisibleby:3 and not forloop.last %}
-        {% endif %}
-        {% empty %}
-        <div class="col s12">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">Você ainda não fez nenhuma doação!</span>
-                    <p>Faça a diferença hoje! Doe e ajude a transformar vidas!</p>
-                </div>
-            </div>
+        <div class="col m6">
+            <h2 class="subtitulo">Entrar em Contacto</h2>
+            <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                      <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="last_name" type="text" class="validate">
+                      <label for="last_name">Last Name</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <form class="col s12">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <textarea id="textarea1" class="materialize-textarea"></textarea>
+                          <label for="textarea1">Messagem</label>
+                        </div>
+                      </div>
+                    </form>
+                  </div>                
+                  </div>
+                </form>
+              </div>
         </div>
         {% endfor %}
     </div>

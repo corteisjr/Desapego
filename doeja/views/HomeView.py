@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from doeja.forms.DonationForm import DonationForm
-from doeja.models import Donation, Profile, Like
+from doeja.models import Donation, Profile
+from django.core.paginator import Paginator
 
 def list_donation_view(request):
     name_of_object = request.GET.get("name_of_object")
@@ -11,7 +12,7 @@ def list_donation_view(request):
     picture = request.GET.get('picture')
     category = request.GET.get('category')
     
-    donations = Donation.objects.all().order_by('-created_at')
+    donations_list = Donation.objects.all().order_by('-created_at')
     
     if name_of_object is not None:
         donations = donations.filter(name_of_object__icontains=name_of_object)
@@ -27,7 +28,9 @@ def list_donation_view(request):
         donations = donations.filter(category__id=category)
         
 
-        
+    paginator = Paginator(donations_list , 8 )
+    page = request.GET.get("page")
+    donations = paginator.get_page(page)
         
     context={
         'donations' : donations

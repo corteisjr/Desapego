@@ -59,7 +59,7 @@
         {% if forloop.counter|divisibleby:3 and not forloop.last %}
           </div><div class="row">
         {% endif %}
-      {% empty %}
+        {% empty %}
         <div class="col s12">
           <div class="card">
             <div class="card-content">
@@ -68,8 +68,23 @@
             </div>
           </div>
         </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
+      <div class="pagination center">
+        <ul class="pagination">
+            {% if donations.has_previous %}
+            <li class="waves-effect"><a href="?page={{ donations.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+            {% endif %}
+
+            <span class="current">
+              {{ donations.number}} de {{ donations.paginator.num_pages}}
+            </span>
+    
+            {% if donations.has_next %}
+            <li class="waves-effect"><a href="?page={{ donations.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+            {% endif %}
+        </ul>
     </div>
     </div>
-</div>
+  </div>
 {% endblock content %}
