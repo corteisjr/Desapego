@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+    Editar
+{% endblock title %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="col">
+    <div class="container">
+    <h5 class="blue-text darken-4">Actualizar Doação</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form.name_of_object }}
+            <label for="id_name_of_object">Nome do Objeto</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form.description }}
+            <label for="id_description">Descrição</label>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              {{ form.status }}
+              <label for="id_description">Status</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="file-field input-field col s12">
+            <div class="btn blue darken-3">
+              <span>Imagem</span>
+              {{ form.picture }}
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select name="{{ form.category.name }}">
+              <option value="" disabled selected>Escolha uma categoria</option>
+              {% for value, label in form.category.field.choices %}
+                  <option value="{{ value }}" {% if value == form.category.value %} selected {% endif %}>{{ label }}</option>
+              {% endfor %}
+          </select>
+              <label for="id_category">Categoria</label>
+          </div>
+      </div>
+        <div class="row">
+          <div class="input-field col s12">
+              <a href="{% url 'own_donation' %}" class="btn waves-effect waves-light blue darken-3">Cancelar</a>
+              <button type="submit" class="btn waves-effect waves-light red darken-3">Actualizar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endif %}  
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var selectElems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(selectElems);
+  });
+  </script>
+{% endblock content %}
+    

@@ -77,7 +77,36 @@ def own_donation(request):
 def delete_donation(request, id):
     donation = get_object_or_404(Donation, pk=id)
     donation.delete()
-    return redirect('own_donation')    
+    return redirect('own_donation')
+
+@login_required
+def edit_donation(request, id):
+    donation = get_object_or_404(Donation, pk=id)
+    
+    if request.method == "POST":
+        form = DonationForm(request.POST, request.FILES)
+        if form.is_valid():
+            donation = form.save(commit=False)
+            donation.user = request.user.profile
+            donation.save()
+            return redirect('own_donation')
+        else:
+            context = {'form': form, 'donation': donation}
+            return render(
+                request, 
+                template_name='home/edit-donation.html',
+                context=context
+            )
+    else:
+        form = DonationForm(instance=donation)
+    
+    context = {'form': form, 'donation': donation}
+    return render(
+        request, 
+        template_name='home/edit-donation.html',
+        context=context
+    )
+        
 # view to like donation
 def like_donation(request, donation_id):
     donation = get_object_or_404(Donation, pk=donation_id)
