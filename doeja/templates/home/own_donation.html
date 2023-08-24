@@ -92,9 +92,21 @@
                   {% if user.is_authenticated %}
                   <div class="card-action">
                       <a href="{% url 'like_donation' donation_id=donation.id %}">
+                        <a href="#modal-confirm-delete" class="left modal-trigger"><i class="material-icons red-text">delete</i></a>
+                        <a href="" class="left"><i class="material-icons blue-text">update</i></span></a>
                           <span class="right">{{ donation.likes.count }} Likes</span>
                       </a>
                   </div>
+                           <!-- Modal -->
+                  <div id="modal-confirm-delete" class="modal">
+                    <div class="modal-content">
+                        <h4>Confirmar Exclusão</h4>
+                        <p>Tem certeza de que deseja excluir <span style="font-weight: bold;">{{donation.name_of_object}}</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                        <a href="{% url 'delete_donation' id=donation.id %}" class="waves-effect waves-red btn red">Confirmar</a>
+                    </div>
                   {% endif %}
               </div>
           </div>
@@ -111,11 +123,17 @@
           </div>
           {% endfor %}
       </div>
+    </div>
+    
   </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       var selectElems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(selectElems);
   });
+  document.addEventListener('DOMContentLoaded', function() {
+        var modals = document.querySelectorAll('.modal');
+        M.Modal.init(modals);
+    });
 </script>
 {% endblock content %}

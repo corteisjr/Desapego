@@ -73,7 +73,11 @@ def own_donation(request):
     
     return render(request, template_name='home/own_donation.html', context=context)
 
-    
+@login_required
+def delete_donation(request, id):
+    donation = get_object_or_404(Donation, pk=id)
+    donation.delete()
+    return redirect('own_donation')    
 # view to like donation
 def like_donation(request, donation_id):
     donation = get_object_or_404(Donation, pk=donation_id)
