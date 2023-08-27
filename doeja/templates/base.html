@@ -53,6 +53,8 @@
     </header>
     {% block content %}
     {% endblock %}
+    
+    {% if request.resolver_match.url_name != 'register' and request.resolver_match.url_name != 'login' %}      
     <footer class="page-footer blue darken-3 position-fixed bottom-0 w-100">
       <div class="container">
           <div class="white-text" style="padding: 10px">
@@ -60,7 +62,9 @@
             <a class="grey-text text-lighten-4 right" href="#!">Desenvolvido com ❤️ Por CorteisJr. </a>
           </div>
       </div>
-  </footer>
+    </footer>
+    {% endif %}
+      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     {% block scripts %} {% endblock %}
   </body>

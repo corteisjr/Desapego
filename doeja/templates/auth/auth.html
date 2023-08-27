@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Registro{% endblock %}
+{% block title %}
+{% if request.resolver_match.url_name in 'login' %}
+Login
+{% else %}  
+  Registro
+{% endif %}
+{% endblock %}
 
 {% block styles %}
 <style>
@@ -56,7 +62,13 @@
 <div class="container">
   <main>
     <center>
-      <h5 class="blue-text darken-4">Por favor, faça o registro de uma nova conta!</h5>
+      
+      {% if request.resolver_match.url_name in 'login' %}
+        <h5 class="blue-text darken-4">Preencha com seus dados para acessar sua conta!</h5>
+      {% else %}
+        <h5 class="blue-text darken-4">Por favor, faça o registro de uma nova conta!</h5>
+      {% endif %}
+        
       <div class="container">
         <div class="grey lighten-4 row"
           style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #ddd; width: 60%;">
@@ -86,11 +98,13 @@
                   {% endfor %}
                 </div>
               {% endfor %}
+              {% if request.resolver_match.url_name in 'login' %}
               <div class="row">
                 <label style="float: right">
-                  <a class="red-text darken-3" href="#!"><b>Forgot Password?</b></a>
+                  <a class="red-text darken-3" href="#!"><b>Esqueceu a senha?</b></a>
                 </label>
               </div>
+              {% endif %}
               <center>
                 <div class="row register-btn">
                   <button type="submit" name="btn_register" class="col s12 btn btn-large waves-effect blue darken-3">
