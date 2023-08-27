@@ -1,4 +1,4 @@
-# Projeto de Adoção de Bens
+# Desapego
 
 Este é um projeto de adoção de bens, que visa facilitar a doação de objetos, pertences e recursos materiais de pessoas ou organizações para aqueles que mais precisam.
 
